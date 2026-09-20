@@ -10,23 +10,12 @@ public class App {
         }
 
         switch (args[0].trim().toLowerCase()) {
-            case "add" -> addTask(args);
+            case "add" -> TaskManager.addTask(args);
         
             default -> System.out.println("invalid argument");
         }
 
         
-    }
-
-
-
-    static void addTask(String []args){
-        if (args.length != 2){
-            System.out.println("Invalid number of arguments");
-            System.out.println("Usage: add \"Task-name\"");
-            return;
-        }
-        System.out.println(args[1]);
     }
 
     static boolean isValidArgument(String []args, String []commands){
