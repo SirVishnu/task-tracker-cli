@@ -11,6 +11,8 @@ public class App {
 
         switch (args[0].trim().toLowerCase()) {
             case "add" -> TaskManager.addTask(args);
+
+            case "list" -> TaskManager.listTasks(args);
         
             default -> System.out.println("invalid argument");
         }

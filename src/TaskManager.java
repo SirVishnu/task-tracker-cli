@@ -25,36 +25,21 @@ public class TaskManager{
         int id = ++Task.countId;
         String time = LocalDateTime.now().format(formatter);
         tasks.add(new Task(id, description, "todo", time, time));
-
-        for (Task t: tasks){
-            System.out.println(t);
-        }
         saveTasks(tasks);
     }
 
-    public static void saveTasks(ArrayList<Task> tasks){
-        String filename = "../tasks.txt";
-        File file = new File(filename);
-        if(!file.exists()){
-            try{
-                file.createNewFile();
-                System.out.println("New file tasks.txt created");
-            }
-            catch(IOException e){
-                System.out.println("Something went wrong while creating a file");
-            }
+    public static void listTasks(String []args){
+        if (args.length != 1){
+            System.out.println("Usage: \"list\"");
+            return;
         }
 
-        try(BufferedWriter br = new BufferedWriter(new FileWriter(file))){
-            for (Task task: tasks){    
-                br.write(task.toString());
-                br.newLine();
-            }
+        ArrayList<Task> tasks = LoadTasks();
+        System.out.println("\nid|description|status|created date|last updated");
+        for (Task task: tasks){
+            System.out.println(task);
         }
-        catch(IOException e){
-            System.out.println("error occured while writing the file");
-        }
-
+        System.out.println("\n");
     }
 
     public static ArrayList<Task> LoadTasks(){
@@ -94,5 +79,30 @@ public class TaskManager{
             System.out.println("Something went wrong");
         }
         return tasks;
+    }
+
+    public static void saveTasks(ArrayList<Task> tasks){
+        String filename = "../tasks.txt";
+        File file = new File(filename);
+        if(!file.exists()){
+            try{
+                file.createNewFile();
+                System.out.println("New file tasks.txt created");
+            }
+            catch(IOException e){
+                System.out.println("Something went wrong while creating a file");
+            }
+        }
+
+        try(BufferedWriter br = new BufferedWriter(new FileWriter(file))){
+            for (Task task: tasks){    
+                br.write(task.toString());
+                br.newLine();
+            }
+        }
+        catch(IOException e){
+            System.out.println("error occured while writing the file");
+        }
+
     }
 }
