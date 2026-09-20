@@ -14,7 +14,11 @@ public class App {
         
             default -> System.out.println("invalid argument");
         }
+
+        
     }
+
+
 
     static void addTask(String []args){
         if (args.length != 2){
@@ -22,8 +26,7 @@ public class App {
             System.out.println("Usage: add \"Task-name\"");
             return;
         }
-        
-
+        System.out.println(args[1]);
     }
 
     static boolean isValidArgument(String []args, String []commands){
