@@ -179,4 +179,28 @@ public class TaskManager{
         }
 
     }
+
+    public static void updateTask(String []args){
+        if (args.length != 3){
+            System.out.println("Usage: \"update <id> <description>\"");
+            return;
+        }
+        try{
+            String description = args[2].trim();
+            int id = Integer.parseInt(args[1]);
+            ArrayList<Task> tasks = LoadTasks();
+            for (Task task: tasks){
+                if (task.id == id){
+                    task.description = description;
+                    System.out.println("task updated");
+                    break;
+                }
+            }
+            saveTasks(tasks);
+        }
+        catch(NumberFormatException e){
+            System.out.println("id should be numeric");
+            return;
+        }        
+    }
 }
