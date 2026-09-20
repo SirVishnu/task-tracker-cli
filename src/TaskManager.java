@@ -28,6 +28,30 @@ public class TaskManager{
         saveTasks(tasks);
     }
 
+    public static void deleteTask(String []args){
+        if (args.length != 2){
+            System.out.println("Usage: \"delete <id>\"");
+            return;
+        }
+
+        try{
+            int id = Integer.parseInt(args[1]);
+            ArrayList<Task> tasks = LoadTasks();
+            for (Task task: tasks){
+                if (task.id == id){
+                    tasks.remove(task);
+                    System.out.println("task deleted");
+                    break;
+                }
+            }
+            saveTasks(tasks);
+        }
+        catch(NumberFormatException e){
+            System.out.println("id should be numeric");
+            return;
+        }
+    }
+
     public static void listTasks(String []args){
         if (args.length != 1){
             System.out.println("Usage: \"list\"");

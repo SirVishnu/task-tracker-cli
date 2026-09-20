@@ -17,6 +17,8 @@ public class App {
             case "mark-in-progress" -> TaskManager.markInProgress(args);
 
             case "mark-done" -> TaskManager.markDone(args);
+
+            case "delete" -> TaskManager.deleteTask(args);
         
             default -> System.out.println("invalid argument");
         }
