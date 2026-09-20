@@ -4,7 +4,7 @@ A simple command-line task management application built with Java.
 
 The application allows you to create, update, delete, and manage tasks directly from the command line. Tasks are persisted in a text file so that they remain available between program executions.
 
-[URL](https://github.com/SirVishnu/task-tracker-cli)
+[Project URL](https://github.com/SirVishnu/task-tracker-cli)
 
 ## Features
 
