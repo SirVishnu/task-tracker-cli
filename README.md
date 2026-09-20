@@ -6,6 +6,21 @@ The application allows you to create, update, delete, and manage tasks directly 
 
 [Project URL](https://github.com/SirVishnu/task-tracker-cli)
 
+## Clone the Repository
+
+Clone the repository using Git:
+
+```bash
+git clone https://github.com/SirVishnu/task-tracker-cli.git
+```
+
+Then navigate into the project:
+
+```bash
+cd task-tracker-cli
+```
+
+
 ## Features
 
 * Add new tasks
