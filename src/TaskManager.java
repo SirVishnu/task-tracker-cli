@@ -53,8 +53,13 @@ public class TaskManager{
     }
 
     public static void listTasks(String []args){
-        if (args.length != 1){
-            System.out.println("Usage: \"list\"");
+        if (args.length != 1 && args.length != 2){
+            System.out.println("Usage: \"list <status>(optional)\"");
+            return;
+        }
+
+        if (args.length == 2){
+            listTasksByStatus(args[1].toLowerCase().trim());
             return;
         }
 
@@ -62,6 +67,20 @@ public class TaskManager{
         System.out.println("\nid|description|status|created date|last updated");
         for (Task task: tasks){
             System.out.println(task);
+        }
+        System.out.println("\n");
+    }
+
+    public static void listTasksByStatus(String status){
+        if (!status.equals("done") && !status.equals("todo") && !status.equals("in-progress")){
+            System.out.println("invalid status");
+            return;
+        }
+
+        ArrayList<Task> tasks = LoadTasks();
+        System.out.println("\nid|description|status|created date|last updated");
+        for (Task task: tasks){
+            if (task.status.equals(status)) System.out.println(task);
         }
         System.out.println("\n");
     }
@@ -117,6 +136,7 @@ public class TaskManager{
             for (Task task: tasks){
                 if (task.id == id){
                     task.status = "done";
+                    updateTime(task);
                     System.out.println("status updated");
                     break;
                 }
@@ -142,6 +162,7 @@ public class TaskManager{
             for (Task task: tasks){
                 if (task.id == id){
                     task.status = "in-progress";
+                    updateTime(task);
                     System.out.println("status updated");
                     break;
                 }
@@ -192,6 +213,7 @@ public class TaskManager{
             for (Task task: tasks){
                 if (task.id == id){
                     task.description = description;
+                    updateTime(task);
                     System.out.println("task updated");
                     break;
                 }
@@ -202,5 +224,10 @@ public class TaskManager{
             System.out.println("id should be numeric");
             return;
         }        
+    }
+
+    public static void updateTime(Task task){
+        String time = LocalDateTime.now().format(formatter);
+        task.updatedDateTime = time;
     }
 }
