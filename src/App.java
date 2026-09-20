@@ -1,12 +1,29 @@
 public class App {
     public static void main(String[] args) throws Exception {
-       String []commands = {"add", "update", "delete", "list", "mark-in-progress", "mark-done"};
+        // list of commands
+        String []commands = {"add", "update", "delete", "list", "mark-in-progress", "mark-done"};
 
-       // check if valid argument
-       if (!isValidArgument(args, commands)){
-        System.out.println("Invalid argument");
-        return;
-       }
+        // check if valid argument
+        if (!isValidArgument(args, commands)){
+            System.out.println("Invalid argument");
+            return;
+        }
+
+        switch (args[0].trim().toLowerCase()) {
+            case "add" -> addTask(args);
+        
+            default -> System.out.println("invalid argument");
+        }
+    }
+
+    static void addTask(String []args){
+        if (args.length != 2){
+            System.out.println("Invalid number of arguments");
+            System.out.println("Usage: add \"Task-name\"");
+            return;
+        }
+        
+
     }
 
     static boolean isValidArgument(String []args, String []commands){
@@ -14,7 +31,7 @@ public class App {
         if (args.length > 3 || args.length < 1) return false;
 
         for (String s: commands){
-            if(s.equals(args[0])) return true;
+            if(s.equals(args[0].trim().toLowerCase())) return true;
         }
         
         return false;
