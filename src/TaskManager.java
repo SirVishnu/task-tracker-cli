@@ -81,6 +81,56 @@ public class TaskManager{
         return tasks;
     }
 
+    public static void markDone(String []args){
+        if(args.length != 2){
+            System.out.println("Usage: mark-done <id>");
+            return;
+        }
+
+        try{
+            int id = Integer.parseInt(args[1]);
+            ArrayList<Task> tasks = LoadTasks();
+            for (Task task: tasks){
+                if (task.id == id){
+                    task.status = "done";
+                    System.out.println("status updated");
+                    break;
+                }
+            }
+            saveTasks(tasks);
+        }
+        catch(NumberFormatException e){
+            System.out.println("id should be numeric");
+            return;
+        }
+        
+    }
+
+    public static void markInProgress(String []args){
+        if(args.length != 2){
+            System.out.println("Usage: mark-in-progress <id>");
+            return;
+        }
+
+        try{
+            int id = Integer.parseInt(args[1]);
+            ArrayList<Task> tasks = LoadTasks();
+            for (Task task: tasks){
+                if (task.id == id){
+                    task.status = "in-progress";
+                    System.out.println("status updated");
+                    break;
+                }
+            }
+            saveTasks(tasks);
+        }
+        catch(NumberFormatException e){
+            System.out.println("id should be numeric");
+            return;
+        }
+        
+    }
+
     public static void saveTasks(ArrayList<Task> tasks){
         String filename = "../tasks.txt";
         File file = new File(filename);

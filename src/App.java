@@ -13,6 +13,10 @@ public class App {
             case "add" -> TaskManager.addTask(args);
 
             case "list" -> TaskManager.listTasks(args);
+
+            case "mark-in-progress" -> TaskManager.markInProgress(args);
+
+            case "mark-done" -> TaskManager.markDone(args);
         
             default -> System.out.println("invalid argument");
         }
