@@ -1,14 +1,13 @@
-import java.time.LocalDateTime;
 
 public class Task {
     static int countId = 0;
     int id; 
     String description;
     String status;
-    LocalDateTime createdDateTime;
-    LocalDateTime updatedDateTime;
+    String createdDateTime;
+    String updatedDateTime;
 
-    Task(int id, String description, String status, LocalDateTime created, LocalDateTime updated){
+    Task(int id, String description, String status, String created, String updated){
         this.id = id;
         this.description = description;
         this.status = status;
